@@ -39,3 +39,20 @@
   80% { clip-path: inset(15% 0 75% 0); transform: translate(2px); }
   100% { clip-path: inset(46% 0 50% 0); transform: translate(-1px); }
 }
+
+/*Swing Animation*/
+@keyframes swing {
+  0% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(9deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
+}
+
+.bg-swing:hover {
+  animation: swing 1s infinite;
+}
