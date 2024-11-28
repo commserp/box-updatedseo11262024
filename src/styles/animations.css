@@ -1,0 +1,27 @@
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-2000 {
+  animation: fade-in 1s ease-out forwards;
+  animation-delay: 2s;
+}
+
+.animate-fade-in-2500 {
+  animation: fade-in 1s ease-out forwards;
+  animation-delay: 2.5s;
+}
+
+.animate-spin-slow {
+  animation: spin 30s linear infinite;
+}
+
+.animate-rotate-reverse {
+  animation: spin 40s linear infinite reverse;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
