@@ -4,8 +4,28 @@ import { GlitchText } from '../GlitchText';
 import { Button } from '../Button';
 
 export function CyberSecurityService() {
+  const [isOpen, setIsOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [dataBreaches, setDataBreaches] = useState<Array<{ x: number; y: number; speed: number }>>([]);
+
+  useEffect(() => {
+    if (location.hash) {
+      const targetElement = document.getElementById(location.hash.substring(1));
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // Close mobile menu when location changes
+    setIsOpen(false);
+  }, [location]);
+
+  const handleGetStarted = () => {
+    const packagesSection = document.getElementById('packages');
+    if (packagesSection) {
+      packagesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     // Generate initial data breaches
@@ -97,7 +117,7 @@ export function CyberSecurityService() {
                 Live Demo
                 <span className="ml-2">→</span>
               </Button>
-              <Button variant="outline">
+              <Button onClick={handleGetStarted} variant="outline">
                 Documentation
                 <span className="ml-2">↗</span>
               </Button>
