@@ -14,6 +14,7 @@ import { Summary } from './components/Summary';
 import FounderPage from './pages/Founder';
 import ContactPage from './pages/Contact';
 import ErrorPageNotFound from './components/ErrorPageNotFound';
+import BackToTop from './components/common/BackToTop';
 
 function HomePage() {
   return (
@@ -65,6 +66,7 @@ export default function App() {
         <Route path="*" element={<ErrorPageNotFound />} />
       </Routes>
       <Footer />
+      <BackToTop />
     </div>
   );
 }
