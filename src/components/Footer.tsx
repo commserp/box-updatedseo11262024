@@ -1,43 +1,43 @@
 import React from 'react';
 import { Logo } from './Logo';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Handshake, UserRoundCog, Mail } from 'lucide-react';
 import { AnimatedTagline } from './AnimatedTagline';
 
 export function Footer() {
   const footerLinks = [
     {
       id: 'company',
-      title: 'Company',
+      title: 'Important Features',
       links: [
-        { id: 'about', label: 'About', href: '/#about' },
-        { id: 'ourfounder', label: 'Our Founder', href: '/founder' },
-        { id: 'contact', label: 'Contact', href: '/contact' },
+        { id: 'services', label: 'Services', href: '/#services' },
+        { id: 'intelpack', label: 'Intelligence Packages', href: '/#packages' },
+        { id: 'about', label: 'About Us', href: '/#about' },
       ],
     },
     {
       id: 'resources',
       title: 'Resources',
       links: [
-        { id: 'blog', label: 'Blog', href: '#blog' },
-        { id: 'documentation', label: 'Documentation', href: '#docs' },
-        { id: 'support', label: 'Support', href: '#support' },
+        { id: 'geointel', label: 'Geopolitical Intelligence', href: '#geopolitical' },
+        { id: 'bgCa', label: 'Cyberattack Analysis', href: '#cyber-attack' },
+        { id: 'faq', label: 'FAQ', href: '/#faq' },
       ],
     },
     {
-      id: 'legal',
-      title: 'Legal',
+      id: 'forgedField',
+      title: 'Forged in the Field',
       links: [
-        { id: 'privacy', label: 'Privacy', href: '#privacy' },
-        { id: 'terms', label: 'Terms', href: '#terms' },
-        { id: 'security', label: 'Security', href: '#security' },
+        { id: 'ourMission', label: 'Our Mission', href: '/#our-mission' },
+        { id: 'ourCommitment', label: 'Our Commitment', href: '/#our-commitment' },
+        { id: 'OpProficiency', label: 'Operational Proficiency', href: '#operational-proficiency' },
       ],
     },
   ];
 
   const socialLinks = [
-    { id: 'github', Icon: Github, href: '#' },
-    { id: 'twitter', Icon: Twitter, href: '#' },
-    { id: 'linkedin', Icon: Linkedin, href: '#' },
+    { id: 'bgServices', Icon: Handshake, href: '/#services' },
+    { id: 'bgFounder', Icon: UserRoundCog, href: '/founder' },
+    { id: 'bgMail', Icon: Mail, href: '/contact' },
   ];
 
   return (
@@ -48,9 +48,7 @@ export function Footer() {
           <div className="space-y-4">
             <Logo />
             <p className="text-white/60 text-sm">
-              Ready for Anything.
-              <br />
-              Prepared for Everything.
+            Black Box Analytix provides advanced analytics and intelligence solutions for global challenges, including geopolitical risks, cyber threats, and economic instability.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map(({ id, Icon, href }) => (
@@ -59,7 +57,7 @@ export function Footer() {
                   href={href}
                   className="text-white/60 hover:text-red-600 transition-colors duration-200"
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-5 h-5 bg-swing" />
                 </a>
               ))}
             </div>
