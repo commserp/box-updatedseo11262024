@@ -1,14 +1,60 @@
-import React from 'react';
+import React, { useState, FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
+import emailjs from '@emailjs/browser';
 import { GlitchText } from '../components/GlitchText';
 import { Button } from '../components/Button';
 import { Navbar } from '../components/Navbar';
-import { Footer } from '../components/Footer';
+
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<{ sending?: string; success?: string; error?: string }>({});
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus({sending: 'Sending...'});
+
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      const result = await emailjs.send(
+        'service_vuhsu3r',
+        'template_iqkchrc',
+        templateParams,
+        'bbDmJUhj7yesRJeMJ'
+      );
+      console.log(result.text);
+      setStatus({ success: 'Message sent successfully!' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setStatus({ error: 'Failed to send message. Please try again.' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* SEO Configuration */}
       <Helmet>
         <title>Contact Us | Black Box Analytix</title>
         <meta
@@ -32,7 +78,6 @@ export default function ContactPage() {
           </div>
 
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Hero Section */}
             <div className="text-center mb-16">
               <GlitchText text="Contact Us" className="mb-4" />
               <h2 className="text-2xl text-red-600 mb-8">We're Here to Help</h2>
@@ -42,11 +87,9 @@ export default function ContactPage() {
               </p>
             </div>
 
-            {/* Contact Form */}
             <div className="bg-black/50 p-8 rounded-lg border border-white/10 shadow-lg">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Name Field */}
                   <div>
                     <label
                       htmlFor="name"
@@ -58,13 +101,14 @@ export default function ContactPage() {
                       type="text"
                       id="name"
                       name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 bg-black/20 text-white rounded-lg border border-white/10 focus:ring-2 focus:ring-red-600 focus:outline-none"
                       placeholder="Your Name"
                       required
                     />
                   </div>
 
-                  {/* Email Field */}
                   <div>
                     <label
                       htmlFor="email"
@@ -76,6 +120,8 @@ export default function ContactPage() {
                       type="email"
                       id="email"
                       name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 bg-black/20 text-white rounded-lg border border-white/10 focus:ring-2 focus:ring-red-600 focus:outline-none"
                       placeholder="Your Email"
                       required
@@ -83,7 +129,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Subject Field */}
                 <div>
                   <label
                     htmlFor="subject"
@@ -95,13 +140,14 @@ export default function ContactPage() {
                     type="text"
                     id="subject"
                     name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 bg-black/20 text-white rounded-lg border border-white/10 focus:ring-2 focus:ring-red-600 focus:outline-none"
                     placeholder="Subject"
                     required
                   />
                 </div>
 
-                {/* Message Field */}
                 <div>
                   <label
                     htmlFor="message"
@@ -112,14 +158,19 @@ export default function ContactPage() {
                   <textarea
                     id="message"
                     name="message"
-                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
                     className="w-full px-4 py-3 bg-black/20 text-white rounded-lg border border-white/10 focus:ring-2 focus:ring-red-600 focus:outline-none"
                     placeholder="Your Message"
                     required
                   ></textarea>
                 </div>
 
-                {/* Submit Button */}
+                {status.success && (<div className="text-green-500 text-center">{status.success}</div>)}
+                {status.sending && (<div className="text-red-500 text-center">{status.sending}</div>)}
+                {status.error && (<div className="text-red-500 text-center">{status.error}</div>)}
+
                 <div className="text-center">
                   <Button type="submit" className="px-6 py-3">
                     Send Message
