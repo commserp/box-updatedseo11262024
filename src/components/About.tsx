@@ -59,7 +59,7 @@ export function About() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+          <div id="our-mission" className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
             <div className="bg-black/50 p-8 rounded-lg border border-red-600/20 hover:border-red-600/40 transition-all duration-300">
               <h3 className="text-2xl font-bold mb-4 text-red-600">Our Mission</h3>
               <p className="text-white/70">
@@ -81,7 +81,7 @@ export function About() {
           </div>
 
           {/* New Commitment Section */}
-          <div className="mt-12 bg-black/50 p-8 rounded-lg border border-red-600/20 hover:border-red-600/40 transition-all duration-300">
+          <div id="our-commitment" className="mt-12 bg-black/50 p-8 rounded-lg border border-red-600/20 hover:border-red-600/40 transition-all duration-300">
             <h3 className="text-2xl font-bold mb-4 text-red-600">Our Commitment</h3>
             <p className="text-white/70">
               Black Box Analytix is committed to equipping leaders with intelligence that empowers them to act decisively and strategically, regardless of the complexity or volatility of the situation. We were built in the field, for the field—our roots are embedded in the complex environments we now help our clients navigate. With Black Box Analytix, clients can rely on intelligence that is precise, actionable, and forged from experience, ensuring that they are truly "Ready for Anything. Prepared for Everything."
@@ -89,7 +89,7 @@ export function About() {
           </div>
 
           {/* Expertise Section */}
-          <div className="mt-16">
+          <div id="operational-proficiency" className="mt-16">
             <h3 className="text-2xl font-bold text-red-600 mb-8 text-center">Expertise Forged in Conflict</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
